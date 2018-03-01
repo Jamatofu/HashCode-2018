@@ -1,1 +1,5 @@
 /venv
+.idea
+.idea/inspectionProfiles/
+src/input/
+src/ouput/
