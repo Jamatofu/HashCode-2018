@@ -48,6 +48,12 @@ class Ride :
         self.start = start
         self.finish = finish
 
+    def getDistance(self):
+        return abs(int(self.from_y) - int(self.to_y)) + abs(int(from_x) - int(self.to_x))
+
+    def isBonus(self, distance):
+        return self.start < distance and distance < self.finish
+
 
 class Map :
     def __init__(self, row, cols, nbVehicles, nbRides, bonus, nbSteps, name):
@@ -85,6 +91,22 @@ class Map :
 
     def add_ride(self, ride):
         self.rideList.append(ride)
+
+    def getBonus(self):
+        idCurrentCar = 0
+        copyCouse = self.rideList
+
+        for ride in self.rideList:
+            distance = ride.getDistance()
+            for copy in copyCouse:
+                if copy.isBonus():
+                    self.vehiclesList[idCurrentCar].addCourse(copy)
+                    copyCouse.remove(copy)
+                    continue
+
+
+
+
 
     def printResult(self):
         content = ""
