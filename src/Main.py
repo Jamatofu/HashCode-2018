@@ -11,8 +11,9 @@ def writeInFile(exitFile, data):
 def readAndStoreFile(inputFile):
     with open('input/' + inputFile, 'r') as f:
         content = f.readlines()
-    # you may also want to remove whitespace characters like `\n` at the end of each line
+
     content = [x.strip() for x in content]
+    print("content " + str(content[0]))
 
     return content
 
@@ -28,9 +29,6 @@ class Vehicle:
         for c in self.courses:
             content += ' '
             content += str(c.id)
-
-
-
         return content
 
 class Ride :
@@ -51,7 +49,8 @@ class Map :
         self.cols = cols
         self.row = row
         self.vehiclesList = []
-        for i in nbVehicles:
+        print("nb vec => " + nbVehicles)
+        for i in range(1, int(nbVehicles)):
             self.vehiclesList.append(Vehicle())
         self.nbSteps = nbSteps
         self.rideList = []
@@ -68,14 +67,18 @@ class Map :
         content = ""
         for car in self.vehiclesList:
             content += car.printCourse() + '\n'
+
         content = content[:-1]
         writeInFile(self.name, content)
 
 
 
+
+
 def startSimulation(file):
     content = readAndStoreFile(file)
-    map = Map(content[0][0], content[0][1], content[0][2], content[0][3], content[0][4], content[0][5], file)
+    line = content[0].split(' ')
+    map = Map(line[0], line[0], line[0], line[0], line[0], line[0], file)
     for i in range(1, len(content)):
         map.add_ride(Ride(i-1, content[i][0], content[i][1], content[i][2], content[i][3], content[i][4], content[i][5]))
     map.solveCourse()
