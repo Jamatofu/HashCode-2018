@@ -21,12 +21,14 @@ class Vehicle:
         self.courses = []
 
     def addCourse(self, course):
-        self.courses.push(course)
+        self.courses.append(course)
 
     def printCourse(self):
         content = len(self.courses);
         for c in self.courses:
             content += ' ' + self.courses.id
+
+
 
         return content
 
@@ -44,22 +46,33 @@ class Map :
         self.nbRides = nbRides
         self.cols = cols
         self.row = row
-        self.nbVehicles = nbVehicles
+        self.vehiclesList = []
+        for i in nbVehicles:
+            self.vehiclesList.append(i)
         self.nbSteps = nbSteps
         self.rideList = []
 
     def solveCourse(self):
-
+        for course in self.rideList:
+            self.vehiclesList[0].addCourse(course)
 
     def add_ride(self, ride):
         self.rideList.append(ride)
+
+    def printResult(self):
+        content = ""
+        for car in self.vehiclesList:
+            content += car.printCourse() + '\n'
+        writeInFile('a', content)
+
 
 
 def startSimulation(file):
     content = readAndStoreFile(file)
     print(content)
     map = Map(content[0][0], content[0][1], content[0][2], content[0][3], content[0][4], content[0][5])
-
+    map.solveCourse()
+    # map.printResult()
 
 
 
