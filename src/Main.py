@@ -1,3 +1,7 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -16,8 +20,6 @@ if args.showUi:
     # create an object that inputs data randomly
     if args.showUi == "true":
         print("Starting project with UI!")
-        map = Map()
-        map.printMap()
         exit(0)
 
     else:
