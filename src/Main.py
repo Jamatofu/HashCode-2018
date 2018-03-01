@@ -20,9 +20,16 @@ def readAndStoreFile(inputFile):
 class Vehicle:
     def __init__(self):
         self.courses = []
+        self.x = 0
+        self.y = 0
+
+    def moveTo(self,x,y):
+        self.x = x
+        self.y = y
 
     def addCourse(self, course):
         self.courses.append(course)
+        self.moveTo(course.to_x, course.to_y)
 
     def printCourse(self):
         content = str(len(self.courses))
@@ -56,9 +63,19 @@ class Map :
         self.rideList = []
         self.name = name
 
+    def findClosestVehicle(self, x, y):
+        vehicle = None
+        for v in self.vehiclesList:
+            if vehicle is None:
+                vehicle = v
+            else:
+                if (abs(int(v.y) - int(y)) + abs(int(v.x) - int(x))) < (abs(int(vehicle.y) - int(y)) + abs(int(vehicle.x) - int(x))):
+                    vehicle = v
+        return vehicle
+
     def solveCourse(self):
         for course in self.rideList:
-            self.vehiclesList[0].addCourse(course)
+            self.findClosestVehicle(course.from_x, course.from_y).addCourse(course)
 
     def add_ride(self, ride):
         self.rideList.append(ride)
@@ -78,9 +95,10 @@ class Map :
 def startSimulation(file):
     content = readAndStoreFile(file)
     line = content[0].split(' ')
-    map = Map(line[0], line[0], line[0], line[0], line[0], line[0], file)
+    map = Map(line[0], line[1], line[2], line[3], line[4], line[5], file)
     for i in range(1, len(content)):
-        map.add_ride(Ride(i-1, content[i][0], content[i][1], content[i][2], content[i][3], content[i][4], content[i][5]))
+        line = content[i].split(' ')
+        map.add_ride(Ride(i-1, line[0], line[1], line[2], line[3], line[4], line[5]))
     map.solveCourse()
     map.printResult()
 
