@@ -20,8 +20,8 @@
       <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="30" column="22" lean-forward="false" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -328,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519927247564</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Create basic map">
+      <created>1519927576742</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1519927576742</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -371,7 +378,8 @@
     <MESSAGE value="Edit" />
     <MESSAGE value="Input files" />
     <MESSAGE value="Basic simulation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic simulation" />
+    <MESSAGE value="Create basic map" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create basic map" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -412,8 +420,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="30" column="22" lean-forward="false" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
           <folding />
         </state>
       </provider>

@@ -16,6 +16,20 @@ def readAndStoreFile(inputFile):
 
     return content
 
+class Vehicle:
+    def __init__(self):
+        self.courses = []
+
+    def addCourse(self, course):
+        self.courses.push(course)
+
+    def printCourse(self):
+        content = len(self.courses);
+        for c in self.courses:
+            content += ' ' + self.courses.id
+
+        return content
+
 class Map :
     def __init__(self, row, cols, nbVehicles, nbRides, bonus, nbSteps):
         self.bonus = bonus
@@ -24,6 +38,9 @@ class Map :
         self.row = row
         self.nbVehicles = nbVehicles
         self.nbSteps = nbSteps
+
+    def solveCourse(self):
+
 
 
 
