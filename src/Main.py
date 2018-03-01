@@ -4,6 +4,11 @@
 
 import argparse
 
+def writeInFile(exitFile, data):
+    with open(exitFile, 'w') as f:
+        f.write(data)
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--showUi",
