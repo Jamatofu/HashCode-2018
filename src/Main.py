@@ -23,6 +23,7 @@ class Vehicle:
         self.courses = []
         self.x = 0
         self.y = 0
+        self.distance = 0
         self.counter = 0
 
     def moveTo(self,x,y):
@@ -109,7 +110,6 @@ class Map :
 
 
     def solveCourse(self):
-        self.rideList.sort()
 
         for i in range (0,int(len(self.rideList)/4)):
             self.findVehicleSimple(self.rideList[i].id).addCourse(self.rideList[i])
@@ -125,20 +125,16 @@ class Map :
         self.rideList.append(ride)
 
     def getBonus(self):
-        idCurrentCar = 0
-        copyCouse = self.rideList
+        self.rideList.sort()
 
-        for ride in self.rideList:
-            distance = ride.getDistance()
-            for copy in copyCouse:
-                if copy.isBonus():
-                    self.vehiclesList[idCurrentCar].addCourse(copy)
-                    copyCouse.remove(copy)
-                    continue
+        for car in self.vehiclesList:
+            for ride in self.rideList:
+                if(self.compute_distance(car.x, car.y, ride.from_x, ride.from_y) > ride.start):
+                    car.addCourse(ride)
+                    self.rideList.pop(0)
 
-
-
-
+        for course in self.rideList:
+            self.findVehicleSimple(course.id).addCourse(course)
 
     def printResult(self):
         content = ""
@@ -149,9 +145,6 @@ class Map :
         writeInFile(self.name, content)
 
 
-
-
-
 def startSimulation(file):
     content = readAndStoreFile(file)
     line = content[0].split(' ')
@@ -159,7 +152,7 @@ def startSimulation(file):
     for i in range(1, len(content)):
         line = content[i].split(' ')
         map.add_ride(Ride(i-1, line[0], line[1], line[2], line[3], line[4], line[5]))
-    map.solveCourse()
+    map.getBonus()
     map.printResult()
 
 if __name__ == '__main__':
