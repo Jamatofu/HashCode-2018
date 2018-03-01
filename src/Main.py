@@ -2,23 +2,22 @@
 # -*- coding: utf-8 -*-
 #
 
-import argparse
 
 def writeInFile(exitFile, data):
-    with open('/output/' + exitFile, 'w') as f:
+    with open('output/' + exitFile, 'w') as f:
         f.write(data)
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "a",
-        type=str,
-    )
+def readAndStoreFile(inputFile):
+    with open('input/' + inputFile, 'r') as f:
+        content = f.readlines()
+    # you may also want to remove whitespace characters like `\n` at the end of each line
+    content = [x.strip() for x in content]
+
+    return content
 
 
 
-    # récupère les arguments dans un objet (appelable comme un struct en C)
-    args = parser.parse_args()
-    print(args.a)
-
-    writeInFile('output.txt', args.a)
+writeInFile('output.txt', 'a')
+courses = []
+courses = readAndStoreFile('input.txt')
+print(courses)
