@@ -57,7 +57,7 @@ class Map :
         self.row = row
         self.vehiclesList = []
         print("nb vec => " + nbVehicles)
-        for i in range(1, int(nbVehicles)):
+        for i in range(0, int(nbVehicles)):
             self.vehiclesList.append(Vehicle())
         self.nbSteps = nbSteps
         self.rideList = []
@@ -73,9 +73,15 @@ class Map :
                     vehicle = v
         return vehicle
 
+    def findVehicle(self, idRide):
+        vehicle = self.vehiclesList[idRide%len(self.vehiclesList)]
+        return vehicle
+
     def solveCourse(self):
         for course in self.rideList:
-            self.findClosestVehicle(course.from_x, course.from_y).addCourse(course)
+            #self.findClosestVehicle(course.from_x, course.from_y).addCourse(course)
+
+            self.findVehicle(course.id).addCourse(course)
 
     def add_ride(self, ride):
         self.rideList.append(ride)
