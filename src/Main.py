@@ -30,6 +30,14 @@ class Vehicle:
 
         return content
 
+class Ride :
+    def __init__(self, si, fi, es, lf):
+        self.start_inter = si
+        self.finish_inter = fi
+        self.earliest_start = es
+        self.latest_finish = lf
+
+
 class Map :
     def __init__(self, row, cols, nbVehicles, nbRides, bonus, nbSteps):
         self.bonus = bonus
@@ -38,10 +46,13 @@ class Map :
         self.row = row
         self.nbVehicles = nbVehicles
         self.nbSteps = nbSteps
+        self.rideList = []
 
     def solveCourse(self):
 
 
+    def add_ride(self, ride):
+        self.rideList.append(ride)
 
 
 def startSimulation(file):
