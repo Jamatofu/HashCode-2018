@@ -32,15 +32,23 @@ def startSimulation(file):
     print(content)
     map = Map(content[0][0], content[0][1], content[0][2], content[0][3], content[0][4], content[0][5])
 
+class Ride :
+    def __init__(self,si,fi,es,lf):
+        self.start_inter = si
+        self.finish_inter = fi
+        self.earliest_start = es
+        self.latest_finish = lf
+
+
 
 
 
 if __name__ == '__main__':
     startSimulation('a_example.in')
-    # startSimulation('b_should_be_easy.in')
-    # startSimulation('c_no_hurry.in')
-    # startSimulation('d_metropolis.in')
-    # startSimulation('e_high_bonus.in')
+    startSimulation('b_should_be_easy.in')
+    startSimulation('c_no_hurry.in')
+    startSimulation('d_metropolis.in')
+    startSimulation('e_high_bonus.in')
 
 
 courses = []
