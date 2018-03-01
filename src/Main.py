@@ -23,8 +23,10 @@ class Vehicle:
         self.courses = []
         self.x = 0
         self.y = 0
+        self.counter = 0
 
     def moveTo(self,x,y):
+        self.counter += abs(int(self.x) - int(self.y)) + abs(int(x) - int(y))
         self.x = x
         self.y = y
 
@@ -91,21 +93,33 @@ class Map :
         return vehicle
 
     def findVehicleSmart(self,ride):
-        distance = 99999
+        start = int(ride.start)
         vehicle_sel = self.vehiclesList[0]
+        delta = -999999
         for vehicle in self.vehiclesList:
-            if self.compute_distance(vehicle.x, vehicle.y, ride.x, ride.y) < distance:
-                vehicle_sel = vehicle
+            deltaP = start - vehicle.counter + self.compute_distance(int(vehicle.x), int(vehicle.y), int(ride.from_x), int(ride.from_y))
+            #print(deltaP)
+
+            if deltaP < 0:
+                if deltaP > delta:
+                    delta = deltaP
+                    vehicle_sel = vehicle
+
+        return vehicle_sel
 
 
     def solveCourse(self):
         self.rideList.sort()
 
-        for course in self.rideList:
-            print(course.getDistance())
+        for i in range (0,int(len(self.rideList)/4)):
+            self.findVehicleSimple(self.rideList[i].id).addCourse(self.rideList[i])
+
+        for j in range(int(len(self.rideList)/4)+1, len(self.rideList)):
+            #print(course.getDistance())
             #self.findClosestVehicle(course.from_x, course.from_y).addCourse(course)
 
-            self.findVehicleSimple(course.id).addCourse(course)
+            #self.findVehicleSimple(course.id).addCourse(course)
+            self.findVehicleSmart(self.rideList[j]).addCourse(self.rideList[j])
 
     def add_ride(self, ride):
         self.rideList.append(ride)
