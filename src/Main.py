@@ -69,8 +69,11 @@ class Map :
 
 def startSimulation(file):
     content = readAndStoreFile(file)
-    print(content)
+    #print(content)
     map = Map(content[0][0], content[0][1], content[0][2], content[0][3], content[0][4], content[0][5])
+    for i in range(1,len(content)):
+        map.add_ride(Ride(content[i][0], content[i][1], content[i][2], content[i][3]))
+    print(map)
     map.solveCourse()
     # map.printResult()
 
@@ -78,10 +81,10 @@ def startSimulation(file):
 
 if __name__ == '__main__':
     startSimulation('a_example.in')
-    # startSimulation('b_should_be_easy.in')
-    # startSimulation('c_no_hurry.in')
-    # startSimulation('d_metropolis.in')
-    # startSimulation('e_high_bonus.in')
+    #startSimulation('b_should_be_easy.in')
+    #startSimulation('c_no_hurry.in')
+    #startSimulation('d_metropolis.in')
+    #startSimulation('e_high_bonus.in')
 
 
 courses = []
