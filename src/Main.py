@@ -24,20 +24,24 @@ class Vehicle:
         self.courses.append(course)
 
     def printCourse(self):
-        content = len(self.courses);
+        content = str(len(self.courses))
         for c in self.courses:
-            content += ' ' + self.courses.id
+            content += ' '
+            content += str(c.id)
 
 
 
         return content
 
 class Ride :
-    def __init__(self, si, fi, es, lf):
-        self.start_inter = si
-        self.finish_inter = fi
-        self.earliest_start = es
-        self.latest_finish = lf
+    def __init__(self, idR, from_x, from_y, to_x, to_y, start, finish):
+        self.id = idR
+        self.from_x = from_x
+        self.from_y = from_y
+        self.to_x = to_x
+        self.to_y = to_y
+        self.start = start
+        self.finish = finish
 
 
 class Map :
@@ -69,21 +73,18 @@ class Map :
 
 def startSimulation(file):
     content = readAndStoreFile(file)
+    #print(content)
     map = Map(content[0][0], content[0][1], content[0][2], content[0][3], content[0][4], content[0][5])
-    for i in range(1,len(content)):
-        map.add_ride(Ride(content[i][0], content[i][1], content[i][2], content[i][3]))
+    for i in range(1, len(content)):
+        map.add_ride(Ride(i-1, content[i][0], content[i][1], content[i][2], content[i][3], content[i][4], content[i][5]))
     map.solveCourse()
     map.printResult()
 
-
-
 if __name__ == '__main__':
     startSimulation('a_example.in')
-    #startSimulation('b_should_be_easy.in')
-    #startSimulation('c_no_hurry.in')
-    #startSimulation('d_metropolis.in')
-    #startSimulation('e_high_bonus.in')
+    startSimulation('b_should_be_easy.in')
+    startSimulation('c_no_hurry.in')
+    startSimulation('d_metropolis.in')
+    startSimulation('e_high_bonus.in')
 
 
-courses = []
-print(courses)
