@@ -69,6 +69,9 @@ class Map :
         self.rideList = []
         self.name = name
 
+    def compute_distance(self, x1, y1, x2, y2):
+        return abs(int(y1) - int(y2)) + abs(int(x1) - int(x2))
+
     def findClosestVehicle(self, x, y):
         vehicle = None
         for v in self.vehiclesList:
@@ -79,15 +82,23 @@ class Map :
                     vehicle = v
         return vehicle
 
-    def findVehicle(self, idRide):
+    def findVehicleSimple(self, idRide):
         vehicle = self.vehiclesList[idRide%len(self.vehiclesList)]
         return vehicle
+
+    def findVehicleSmart(self,ride):
+        distance = 99999
+        vehicle_sel = self.vehiclesList[0]
+        for vehicle in self.vehiclesList:
+            if self.compute_distance(vehicle.x, vehicle.y, ride.x, ride.y) < distance:
+                vehicle_sel = vehicle
+
 
     def solveCourse(self):
         for course in self.rideList:
             #self.findClosestVehicle(course.from_x, course.from_y).addCourse(course)
 
-            self.findVehicle(course.id).addCourse(course)
+            self.findVehicleSimple(course.id).addCourse(course)
 
     def add_ride(self, ride):
         self.rideList.append(ride)
