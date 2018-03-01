@@ -3,6 +3,7 @@
 #
 
 import argparse
+import operator
 
 def writeInFile(exitFile, data):
     with open('output/' + exitFile, 'w') as f:
@@ -49,10 +50,13 @@ class Ride :
         self.finish = finish
 
     def getDistance(self):
-        return abs(int(self.from_y) - int(self.to_y)) + abs(int(from_x) - int(self.to_x))
+        return abs(int(self.from_y) - int(self.to_y)) + abs(int(self.from_x) - int(self.to_x))
 
     def isBonus(self, distance):
         return self.start < distance and distance < self.finish
+
+    def __lt__(self, other):
+        return self.getDistance() < other.getDistance()
 
 
 class Map :
@@ -84,7 +88,10 @@ class Map :
         return vehicle
 
     def solveCourse(self):
+        self.rideList.sort()
+
         for course in self.rideList:
+            print(course.getDistance())
             #self.findClosestVehicle(course.from_x, course.from_y).addCourse(course)
 
             self.findVehicle(course.id).addCourse(course)
